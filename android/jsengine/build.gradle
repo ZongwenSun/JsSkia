@@ -14,7 +14,9 @@ android {
         consumerProguardFiles "consumer-rules.pro"
         externalNativeBuild {
             cmake {
-                cppFlags ''
+                // 注意：字符串类型需要用转义字符
+                cppFlags "-DCONFIG_VERSION=\\\"${getQuickJsVersion()}\\\""
+                cFlags "-DCONFIG_VERSION=\\\"${getQuickJsVersion()}\\\""
             }
         }
     }
@@ -37,8 +39,11 @@ android {
     }
 }
 
-dependencies {
+String getQuickJsVersion() {
+    return new FileReader(new File(projectDir, "src/main/cpp/quickjs/VERSION")).readLine()
+}
 
+dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     testImplementation 'junit:junit:4.13.2'

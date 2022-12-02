@@ -6,6 +6,11 @@
 
 cmake_minimum_required(VERSION 3.18.1)
 
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_CXX_STANDARD 11)
+
+
+
 # Declares and names the project.
 
 project("jsengine")
@@ -15,6 +20,13 @@ project("jsengine")
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+#file(READ "quickjs/VERSION" quickJsVersion)
+#string(STRIP quickJsVersion quickJsVersion)
+#add_definitions(-DCONFIG_VERSION="${quickJsVersion}")
+
+
+file(GLOB_RECURSE sources "./*.cpp" "./*.c")
+
 add_library( # Sets the name of the library.
              jsengine
 
@@ -22,7 +34,7 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-             jsengine.cpp )
+             ${sources})
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
