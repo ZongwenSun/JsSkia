@@ -9,6 +9,7 @@ cmake_minimum_required(VERSION 3.18.1)
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 11)
 
+add_definitions(-DCONFIG_BIGNUM)
 
 
 # Declares and names the project.
@@ -24,8 +25,12 @@ project("jsengine")
 #string(STRIP quickJsVersion quickJsVersion)
 #add_definitions(-DCONFIG_VERSION="${quickJsVersion}")
 
+file(GLOB_RECURSE headers "*.h")
 
 file(GLOB_RECURSE sources "./*.cpp" "./*.c")
+
+#include(${headers})
+
 
 add_library( # Sets the name of the library.
              jsengine
@@ -59,3 +64,5 @@ target_link_libraries( # Specifies the target library.
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )
+
+#target_include_directories()
