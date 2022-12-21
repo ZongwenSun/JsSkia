@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Fresh"
 include ':app'
-include ':jsengine'
+include ':js_skia'

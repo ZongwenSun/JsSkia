@@ -1,37 +1,33 @@
 package com.szw.fresh;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.szw.fresh.databinding.ActivityMainBinding;
-import com.szw.jsengine.QuickJsEngine;
+import com.szw.jsskia.JsSkiaJNI;
+import com.szw.jsskia.SkiaRenderView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.Reader;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private QuickJsEngine quickJsEngine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        quickJsEngine = new QuickJsEngine();
 
+        new JsSkiaJNI();
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        String script = loadScript();
-        String str = quickJsEngine.evaluate(script);
-        binding.tvHello.setText(str);
-
+        SkiaRenderView skiaRenderView = new SkiaRenderView(MainActivity.this);
+        binding.frameContainer.addView(skiaRenderView);
     }
 
     String loadScript() {
