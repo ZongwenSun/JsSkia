@@ -20,6 +20,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Fresh"
+rootProject.name = "JsSkia"
 include ':app'
 include ':js_skia'
